@@ -1,0 +1,15 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="base_scripts" description="base_scripts" type="script" />
+	<script src="live_die_s.lua" type="server" />
+	<script src="blips_s.lua" type="server" />
+	<script src="pcolor_s.lua" type="server" />
+	<script src="pblips_s.lua" type="server" />
+	<script src="pblips_c.lua" type="client" />
+	<script src="noblow_s.lua" type="server" />
+	<script src="sbr_s.lua" type="server" />
+	<script src="misc_s.lua" type="server" />
+	<script src="nametags_c.lua" type="client" />
+	<script src="loading_c.lua" type="client" />
+	<script src="loading_s.lua" type="server" />
+	<script src="misc_c.lua" type="client" />
+</meta>

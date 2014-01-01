@@ -1,0 +1,5 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="build" description="build" type="script" />
+	<script src="buildings_s.lua" type="server" />
+	<script src="build_house_c.lua" type="client" />
+</meta>

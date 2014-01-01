@@ -1,0 +1,9 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="jobs" description="jobs" type="script" />
+	<script src="taxi_s.lua" type="server" />
+	<script src="jobcreator_s.lua" type="server" />
+	<script src="jobcreator_c.lua" type="client" />
+	<script src="bus_s.lua" type="server" />
+	<script src="bus_c.lua" type="client" />
+	<script src="police_s.lua" type="server" />
+</meta>

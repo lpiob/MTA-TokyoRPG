@@ -1,0 +1,4 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="Chatting" description="Chatting" type="script" />
+	<script src="chat_s.lua" type="server" />
+</meta>

@@ -1,0 +1,6 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="bugfix" description="bugfix" type="script" />
+	<script src="bugfix_s.lua" type="server" />
+    <script src="markers.lua" type="client" />
+	<script src="vehicles.lua" type="client" />
+</meta>

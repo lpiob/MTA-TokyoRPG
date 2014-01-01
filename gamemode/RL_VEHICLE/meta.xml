@@ -1,0 +1,8 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="fuel_vehicle" description="fuel_vehicle" type="script" />
+	<script src="fuel_s.lua" type="server" />
+	<script src="misc_s.lua" type="server" />
+	<script src="vpanel_c.lua" type="client" />
+	<script src="travelmeter_s.lua" type="server" />
+	<script src="upgrades_s.lua" type="server" />
+</meta>

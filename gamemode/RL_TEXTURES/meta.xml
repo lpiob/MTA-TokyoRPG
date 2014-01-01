@@ -1,0 +1,57 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="tokyo" description="tokyo" type="script" />
+	<file src="commercial.txd" />
+	<file src="commercial1.dff" />
+	<file src="commercial2.dff" />
+	<file src="commercial3.dff" />
+	<file src="commercial4.dff" />
+	<file src="commercial5.dff" />
+	<file src="commercial6.dff" />
+	<file src="commercial7.dff" />
+	<file src="commercial8.dff" />
+	<file src="commercial9.dff" />
+	<file src="commercial10.dff" />
+	<file src="commercial1.col" />
+	<file src="commercial2.col" />
+	<file src="commercial3.col" />
+	<file src="commercial4.col" />
+	<file src="commercial5.col" />
+	<file src="commercial6.col" />
+	<file src="commercial7.col" />
+	<file src="commercial8.col" />
+	<file src="commercial9.col" />
+	<file src="commercial10.col" />
+    <file src="nitroultra1.dff" />
+	<file src="nitroultra1.col" />
+	<file src="nitroultra.txd" />
+    <file src="nitroultra2.col" />
+	<file src="nitroultra2.dff" />
+    <file src="rally.txd" />
+	<file src="rally1.col" />
+	<file src="rally1.dff" />
+	<file src="rally2.dff" />
+	<file src="rally2.col" />
+	<file src="rally3.dff" />
+	<file src="rally3.col" />
+	<file src="rally4.dff" />
+	<file src="rally4.col" />
+	<file src="rally5.dff" />
+	<file src="rally5.col" />
+	<file src="srmtrn.col" />
+	<file src="srmtrn.dff" />
+	<file src="srmtrn.txd" />
+	<file src="ebisu_touge01.dff" />
+	<file src="ebisu_touge02.dff" />
+	<file src="ebisu_touge01.col" />
+        <file src="ebisu_touge02.col" />
+	<file src="ebisu_touge.txd" />
+	<file src="ebisuland.txd" />
+	<file src="ebisuland1.col" />
+	<file src="ebisuland2.col" />
+	<file src="ebisuland3.col" />
+	<file src="ebisuland1.dff" />
+	<file src="ebisuland2.dff" />
+	<file src="ebisuland3.dff" />
+	<script src="replaceFull.lua" type="client" />
+	<script src="replaceLogin.lua" type="server" />
+</meta>

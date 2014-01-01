@@ -1,0 +1,5 @@
+﻿<meta>
+	<info author="xScatta" version="1.0" name="login" description="login" type="script" />
+	<script src="login_s.lua" type="server" />
+	<script src="login_c.lua" type="client" />
+</meta>
