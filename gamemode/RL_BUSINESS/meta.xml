@@ -1,4 +1,5 @@
-﻿<meta>
-	<info author="xScatta" version="1.0" name="business" description="business" type="script" />
-	<script src="business_s.lua" type="server" />
+<meta>
+<!-- test - usunac -->
+<info author="xScatta" version="1.0" name="business" description="business" type="script" />
+<script src="business_s.lua" type="server" />
 </meta>
