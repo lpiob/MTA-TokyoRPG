@@ -1,4 +1,3 @@
-
  
 function remove()
 for k, v in ipairs(getElementsByType("object")) do
@@ -153,13 +152,15 @@ local x, y, z = getElementPosition(vehicle)
 setTimer(function () spawnVehicle(vehicle,x,y,z+0.25,0,0,0)end,4500,1)
 end)
 
-function onStart()
-showPlayerHudComponent(getRootElement(),"money",false)
-showPlayerHudComponent(getRootElement(),"health",false)
-showPlayerHudComponent(getRootElement(),"armor",false)
-showPlayerHudComponent(getRootElement(),"clock",false)
-showPlayerHudComponent(getRootElement(),"weapon",false)
-showPlayerHudComponent(getRootElement(),"breath",false)
+-- Od teraz stary hud będzie znikał. Oprócz poziomu ścigania przez policję.
+setTimer(function () for key, value in ipairs(getElementsByType("player")) do
+ showPlayerHudComponent(value,"money",false)
+ showPlayerHudComponent(value,"health",false)
+ showPlayerHudComponent(value,"armour",false)
+ showPlayerHudComponent(value,"weapon",false)
+ showPlayerHudComponent(value,"clock",false)
+ showPlayerHudComponent(value,"ammo",false)
+ showPlayerHudComponent(value,"breath",false)
 end
-
-onStart()
+end,2000,0
+)
