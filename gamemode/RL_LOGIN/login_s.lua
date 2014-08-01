@@ -5,17 +5,14 @@ end)
 
 addEvent("onTryLogin",true)
 addEventHandler("onTryLogin",getRootElement(),function (login,haslo)
-    if getAccount(login) then if
-        getAccount(login,haslo) then
-        logIn(source,getAccount(login),haslo)
-        outputChatBox("#63DBFF*Zostałeś pomyślnie zalogowany.",source,0,0,0,true)
+   if logIn(source, getPlayerAccount(source), haslo) then
+          outputChatBox("#63DBFF*Zostałeś pomyślnie zalogowany.",source,0,0,0,true)
         triggerClientEvent("hideGui",source)
         --spawnPlayer(source,0,0,3)
         setCameraTarget(source)
-        else outputChatBox("#63DBFF*Podałeś złe hasło.",source,0,0,0,true)
-    end
-    else outputChatBox("#63DBFF*Niema takiego konta.",source,0,0,0,true)
-end
+    else 
+        outputChatBox("#63DBFF*Podałeś złe hasło.",source,0,0,0,true)
+ end
 end)
 
 
