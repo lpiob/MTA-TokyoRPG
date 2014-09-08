@@ -6,6 +6,9 @@ local messages = {
 {"[INFO] Jeżeli nie przepadasz za tradycyjnym zarabianiem, możesz porobić sztuczki BMX - za to także jest profit."},
 {"[INFO] Wiadomości te możesz zmienić w RL_MISC/autom_s.lua"},
 
+-- w ramach udzielonej licencji zostawienie ponizszej linii jest wymagane
+{"[INFO] Serwer korzysta z gamemode TokyoRPG (https://github.com/lpiob/MTA-TokyoRPG)"},
+
 }
 
 
