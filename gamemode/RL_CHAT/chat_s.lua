@@ -12,7 +12,12 @@ end
 
 
 function onChat(message,messagetype)
-    if messagetype==0 then
+    
+     if isGuestAccount(getPlayerAccount(psource)) then
+        outputChatBox("Najpierw wejdź do gry.", psource, 255, 000, 000)
+        return end
+    
+    if messagetype == 0 then
         cancelEvent()
         local x, y, z = getElementPosition(source)
         local chatCol = createColSphere(x,y,z,20)
@@ -21,7 +26,7 @@ function onChat(message,messagetype)
         for key, value in ipairs(chatRadius) do 
         outputChatBox(getPlayerName(source).."#FFFFFF: "..message,value,r,g,b,true)
     end
-        else if messagetype==1 then
+        elseif messagetype == 1 then
         cancelEvent()
         local x, y, z = getElementPosition(source)
         local chatCol = createColSphere(x,y,z,30)
@@ -37,6 +42,10 @@ end
 addEventHandler("onPlayerChat",getRootElement(),onChat)
 
 function global(psource,command,...)
+    if isGuestAccount(getPlayerAccount(psource)) then
+        outputChatBox("Najpierw wejdź do gry.", psource, 255, 000, 000)
+        return end
+    
 local tekst = table.concat({...}," ")
 r,g,b = getPlayerNametagColor(psource)
 outputChatBox("#FFFFFF[Global]"..RGBToHex(r,g,b)..getPlayerName(psource).."#FFFFFF: "..tekst,getRootElement(),r,g,b,true)
