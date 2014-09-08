@@ -8,16 +8,19 @@ end
 
 
 function give(playerSource,pcar,car,cost,km)
-    car = getVehicleModelFromName(car)
-    if isPlayerInACL(playerSource,"Admin")
-    then x, y, z = getElementPosition(playerSource)
+ 
+    if isPlayerInACL(playerSource,"Admin") then 
+   
     if ( car ) then 
+        car = string.lower(car)
+           car = getVehicleModelFromName(car)
+                x, y, z = getElementPosition(playerSource)
         local theCar = createVehicle(car,x,y,z+0.15)
         setElementPosition(playerSource,x,y,z+1.5)
         local xr,yr,zr = getElementRotation(playerSource)
         setElementRotation(theCar,xr,yr,zr)
         setElementData(theCar,"vehicle:cost",tonumber(cost))
-        setElementData(theCar,"vehicle:owner",0)
+        setElementData(theCar,"vehicle:owner", false)
         setElementFrozen(theCar,true)
         outputChatBox("#63DBFF*Stworzyłeś pojazd #B9F46C"..getVehicleNameFromModel(car).." #63DBFFktóry kosztuje #B9F46C"..cost.."$#63DBFF.",playerSource,0,0,0,true)
         if km then
@@ -25,16 +28,16 @@ function give(playerSource,pcar,car,cost,km)
         end
         else
         outputChatBox("#63DBFF*Wpisałeś złą nazwę auta.",playerSource,0,0,0,true)
-        end else outputChatBox("#63DBFF*Nie masz prawa do używania tej komendy.",playerSource,0,0,0,true)
+        end 
 end
 end
 
 addCommandHandler("pcar",give)
 
 function onBuyCar(sPlayer)
-  if getPlayerAccount(sPlayer) then
+  if not isGuestAccount(getPlayerAccount(sPlayer)) then
     if isPedInVehicle(sPlayer) then
-        if getElementData(getPedOccupiedVehicle(sPlayer),"vehicle:owner")==0 then
+        if getElementData(getPedOccupiedVehicle(sPlayer),"vehicle:owner") == false then
         if getPlayerMoney(sPlayer)>=tonumber(getElementData(getPedOccupiedVehicle(sPlayer),"vehicle:cost")) then
             setElementData(getPedOccupiedVehicle(sPlayer),"vehicle:owner",getPlayerAccount(sPlayer))
                 setElementData(getPedOccupiedVehicle(sPlayer),"ownername",getPlayerName(sPlayer))
@@ -42,10 +45,11 @@ function onBuyCar(sPlayer)
                 setVehicleEngineState(getPedOccupiedVehicle(sPlayer),true)
                 setElementFrozen(getPedOccupiedVehicle(sPlayer),false)
                 setElementData(getPedOccupiedVehicle(sPlayer),"ownername",getPlayerName(sPlayer))
-                outputChatBox("#63DBFF*Kupiłeś pojazd #B9F46C"..getVehicleName(getPedOccupiedVehicle(sPlayer)).."#63DBFF za #B9F46C"..getElementData(getPedOccupiedVehicle(sPlayer),"vehicle:cost").."$#63DBFF.",sPlayer,0,0,0,true)
+                outputChatBox("#63DBFF*Kupiłeś/aś pojazd #B9F46C"..getVehicleName(getPedOccupiedVehicle(sPlayer)).."#63DBFF za #B9F46C"..getElementData(getPedOccupiedVehicle(sPlayer),"vehicle:cost").."$#63DBFF.",sPlayer,0,0,0,true)
                 local x, y, z = getElementPosition(getPedOccupiedVehicle(sPlayer))
                 local blip = createBlip(x,y,z,0,1,0,0,255,255,0,65535,sPlayer) setElementData(blip,"blip:vehicle",getPedOccupiedVehicle(sPlayer))
-                else outputChatBox("#63DBFF*Niemasz wystarczająco dużo pieniędzy żeby kupić ten #B9F46C"..getVehicleName(getPedOccupiedVehicle(sPlayer)).."#63DBFF.",sPlayer,0,0,0,true)
+                else 
+                    outputChatBox("#63DBFF*Nie masz wystarczająco dużo pieniędzy żeby kupić ten pojazd.",sPlayer,0,0,0,true)
             end
         end
         else outputChatBox("#63DBFF*Musisz być zalogowany.",sPlayer,0,0,0,true)
@@ -58,12 +62,16 @@ addCommandHandler("kuppojazd",onBuyCar)
 
 function onEnterCar(thePlayer,seat,jacked)
 if seat == 0 then
-    if getElementData(source,"vehicle:owner")==0
-    then setVehicleEngineState(source,false)
-    outputChatBox("#63DBFF*Ten #B9F46C"..getVehicleName(source).." #63DBFFkosztuje#B9F46C "..getElementData(source,"vehicle:cost").."$#63DBFF.",thePlayer,0,0,0,true)
+    if getElementData(source,"vehicle:owner") == false then 
+        setVehicleEngineState(source,false)
+        
+    outputChatBox("#63DBFF*Ten pojazd #B9F46C("..getVehicleName(source)..") #63DBFFkosztuje#B9F46C "..getElementData(source,"vehicle:cost").."$#63DBFF.",thePlayer,0,0,0,true)
     outputChatBox("#63DBFF*Jeżeli chcesz kupić ten pojazd wpisz#B9F46C /kuppojazd".."#63DBFF.",thePlayer,0,0,0,true)
-        else if seat == 0 then if getElementData(source,"vehicle:owner") then if getElementData(source,"vehicle:owner")~=getPlayerAccount(thePlayer)then
-        removePedFromVehicle(thePlayer) outputChatBox("#63DBFF*Ten #B9F46C"..getVehicleName(source).." #63DBFFnie należy do ciebie.",thePlayer,0,0,0,true)
+    elseif seat == 0 then 
+        if getElementData(source,"vehicle:owner") then 
+            if getElementData(source,"vehicle:owner") ~= getPlayerAccount(thePlayer)then
+        removePedFromVehicle(thePlayer) 
+        outputChatBox("#63DBFF*Ten pojazd #B9F46C("..getVehicleName(source)..") #63DBFFnie należy do ciebie.",thePlayer,0,0,0,true)
     end
 end
 end
@@ -73,9 +81,9 @@ end
 
 addEventHandler("onVehicleStartEnter",getRootElement(),function (thePlayer,seat,jacked)
 if seat == 0 then
-if jacked == true or false then
-if getElementData(source,"vehicle:owner")== not getPlayerAccount(source) or 0 then
-outputChatBox("#63DBFF*Ten #B9F46C"..getVehicleName(source).." #63DBFFnie należy do ciebie.",thePlayer,0,0,0,true)
+if jacked == true or jacked == false then -- a po co to? xD
+if getElementData(source,"vehicle:owner") =~ getPlayerAccount(source) or getElementData(source, "vehicle:owner") == false then
+outputChatBox("#63DBFF*Ten pojazd #B9F46C("..getVehicleName(source)..") #63DBFFnie należy do ciebie.",thePlayer,0,0,0,true)
 end
 end
 end
@@ -94,10 +102,14 @@ if getElementData(v,"vehicle:owner")==getPlayerAccount(value) then
 setElementVisibleTo(v1,value,true)
 else setElementVisibleTo(v1,value,false)
 end
-else if getElementData(v1,"blip:vehicle") then destroyElement(v1)
+elseif 
+getElementData(v1,"blip:vehicle") then 
+    destroyElement(v1)
 end
 end
-else if getElementData(v1,"blip:vehicle") then destroyElement(v1)
+elseif 
+getElementData(v1,"blip:vehicle") then
+    destroyElement(v1)
 end
 end
 end
@@ -106,7 +118,7 @@ end
 end
 end
 
-function timerek()
+function timerek() -- nie optymalne
 setTimer( blipsit, 1000, 0 )
 end
 
@@ -115,7 +127,7 @@ timerek()
 
 function sellCar(pps,command,koszt)
 if isPedInVehicle(pps) then
-if getElementData(getPedOccupiedVehicle(pps),"vehicle:owner")==getPlayerAccount(pps) then
+if getElementData(getPedOccupiedVehicle(pps),"vehicle:owner") == getPlayerAccount(pps) then
 if koszt then
 if getElementData(getPedOccupiedVehicle(pps),"vehicle:cost")>=tonumber(koszt) then
 setElementData(getPedOccupiedVehicle(pps),"vehicle:cost",tonumber(koszt))
@@ -123,31 +135,34 @@ carx = getPedOccupiedVehicle(pps)
 setElementFrozen(carx,true)
 setVehicleEngineState(carx,false)
 setVehicleDamageProof(carx,true)
-setElementData(carx,"vehicle:owner",0)
+setElementData(carx,"vehicle:owner", false)
 setElementData(carx,"vehicle:used",true)
 setElementData(carx,"vehicle:cost",tonumber(koszt))
 givePlayerMoney(pps,tonumber(koszt))
-outputChatBox("#63DBFF*Wystawiłeś pojazd #B9F46C"..getVehicleName(carx).." #63DBFFza #B9F46C"..tostring(koszt).."$#63DBFF.",pps,0,0,0,true)
+outputChatBox("#63DBFF*Wystawiłeś/aś pojazd #B9F46C"..getVehicleName(carx).." #63DBFFza #B9F46C"..tostring(koszt).."$#63DBFF.",pps,0,0,0,true)
 removePedFromVehicle(pps)
-else carx = getPedOccupiedVehicle(pps) outputChatBox("#63DBFF*Nie możesz wystawić pojazdu za #B9F46C"..tostring(koszt).."$ #63DBFFponieważ jest to więcej niż jego poprzednia cena #B9F46C"..tostring(getElementData(carx,"vehicle:cost")).."$#63DBFF.",pps,0,0,0,true)
+else 
+carx = getPedOccupiedVehicle(pps) 
+outputChatBox("#63DBFF*Nie możesz wystawić tego pojazdu za #B9F46C"..tostring(koszt).."$ #63DBFFponieważ jest to więcej niż jego poprzednia cena #B9F46C("..tostring(getElementData(carx,"vehicle:cost")).."$)#63DBFF.",pps,0,0,0,true)
 end
-else outputChatBox("#63DBFF*Żle wpisana komenda powinno być #B9F46C/sprzedajpojazd <cena>#63DBFF.",pps,0,0,0,true)
+else 
+outputChatBox("#63DBFF*Żle wpisana komenda powinno być #B9F46C/sprzedajpojazd <cena>#63DBFF.",pps,0,0,0,true)
 end
-else outputChatBox("#63DBFF*Ten pojazd nie należy do ciebie.",pps,0,0,0,true)
+else
+    outputChatBox("#63DBFF*Ten pojazd nie należy do ciebie.",pps,0,0,0,true)
 end
-else outputChatBox("#63DBFF*Musisz być w pojeżdzie.",pps,0,0,0,true)
 end
 end
 
 addCommandHandler("sprzedajpojazd",sellCar)
 
 addEventHandler("onElementDestroy",getRootElement(),function ()
-if getElementType(source)=="vehicle" then
+if getElementType(source) = ="vehicle" then
 setElementData(source,"vehicle:owner",nil)
 setElementData(source,"vehicle:cost",nil)
 setElementData(source,"vehicle:used",nil)
 setElementData(source,"vehicle:travel",nil)
-if getElementData(source,"vehicle:blip")~=nil or getElementData(source,"vehicle:blip")~=false then
+if getElementData(source,"vehicle:blip") ~= nil or getElementData(source,"vehicle:blip") =~ false then
 destroyElement(getElementData(source,"vehicle:blip"))
 end
 end
@@ -163,7 +178,7 @@ if isElement(getElementData(value,"blip:vehicle")) then
 if getElementType(getElementData(value,"blip:vehicle"))=="vehicle" then
 local vehicle = getElementData(value,"blip:vehicle")
 if getElementData(vehicle,"vehicle:owner")~=0 then
-if getElementData(vehicle,"vehicle:owner")==getPlayerAccount(v) then
+if getElementData(vehicle,"vehicle:owner") == getPlayerAccount(v) then
 setElementVisibleTo(value,v,true)
 else
 setElementVisibleTo(value,v,false)
