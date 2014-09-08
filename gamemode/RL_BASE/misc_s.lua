@@ -1,6 +1,6 @@
 --[[
 
-No błagam Was... Serio takie coś? Kojarzy mi się to z JBB i innymi shitami, jak ktoś będzie chciał to sobie wywali to z komentarza, nie chcemy chyba robić pseudoli ;--;
+No błagam Was... Serio takie coś? Kojarzy mi się to z pseudolami na których po 3 minutach grania i stania w miejscu masz 170k, jak ktoś będzie chciał to sobie wywali to z komentarza, nie chcemy chyba robić pseudoli ;--;
 
 
 
