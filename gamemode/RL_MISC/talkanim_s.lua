@@ -1,3 +1,8 @@
+--[[
+
+Przeniesione do RL_CHAT/chat_s.lua
+
+
 addEventHandler("onPlayerChat",getRootElement(),function (message,messagetype)
     if messagetype==0 then
         if not isPedInVehicle(source) then
@@ -8,3 +13,5 @@ addEventHandler("onPlayerChat",getRootElement(),function (message,messagetype)
         end
     end
 end)
+
+]]--
