@@ -13,8 +13,8 @@ end
 
 function onChat(message,messagetype)
     
-     if isGuestAccount(getPlayerAccount(psource)) then
-        outputChatBox("Najpierw wejdź do gry.", psource, 255, 000, 000)
+     if isGuestAccount(getPlayerAccount(source)) then
+        outputChatBox("Najpierw wejdź do gry.", source, 255, 000, 000)
         return end
     
     if messagetype == 0 then
@@ -25,6 +25,17 @@ function onChat(message,messagetype)
         local r, g, b = getPlayerNametagColor(source)
         for key, value in ipairs(chatRadius) do 
         outputChatBox(getPlayerName(source).."#FFFFFF: "..message,value,r,g,b,true)
+        addEventHandler("onPlayerChat",getRootElement(),function (message,messagetype)
+    end
+        if not isPedInVehicle(source) then
+        local talktime = string.len(message)*200
+            
+            setPedAnimation(source,"ped","IDLE_chat",0,true,false,true,true)
+            setTimer(function () setPedAnimation(source,"ped","IDLE_chat",100,true,true,true,false)end,talktime,1)
+        end
+    
+
+
     end
         elseif messagetype == 1 then
         cancelEvent()
