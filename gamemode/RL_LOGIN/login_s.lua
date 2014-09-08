@@ -9,7 +9,25 @@ addEventHandler("onTryLogin",getRootElement(),function (login,haslo)
           outputChatBox("#63DBFF*Zostałeś pomyślnie zalogowany.",source,0,0,0,true)
         triggerClientEvent("hideGui",source)
         --spawnPlayer(source,0,0,3)
-        setCameraTarget(source)
+        setCameraTarget(source, source)
+        
+        if isPlayerInACL(source,"Console") then
+    setElementData(source,"Rank","RCON")
+    elseif
+    isPlayerInACL(source,"Admin") then
+    setElementData(source,"Rank","ADMIN")
+    elseif
+    isPlayerInACL(source,"SuperModerator") then
+    setElementData(source,"Rank","SMOD")
+    elseif
+    isPlayerInACL(source,"Moderator") then
+    setElementData(source,"Rank","MOD")
+    else if not isPlayerInACL(source,"Console" or "Admin" or "SuperModerator" or "Moderator") then
+    setElementData(source,"Rank","Gracz")
+    end
+end
+end
+        
     else 
         outputChatBox("#63DBFF*Podałeś złe hasło.",source,0,0,0,true)
  end
@@ -22,11 +40,13 @@ addEventHandler("onTryRegister",getRootElement(),function (login,haslo)
     if addAccount(login,haslo) then
         logIn(source,getAccount(login),haslo)
         outputChatBox("#63DBFF*Zostałeś pomyślnie zarejestrowany i automatycznie zalogowany.",source,0,0,0,true)
-        outputChatBox("#63DBFF*Stworzyłeś konto o nazwie: #B9F46C"..login.." #63DBFFi haśle: #B9F46C"..haslo.."#63DBFF.",source,0,0,0,true)
+        --outputChatBox("#63DBFF*Stworzyłeś konto o nazwie: #B9F46C"..login.." #63DBFFi haśle: #B9F46C"..haslo.."#63DBFF.",source,0,0,0,true)
         triggerClientEvent("hideGui",source)
      --   spawnPlayer(source,0,0,3)
         setCameraTarget(source)
-        else outputChatBox("#63DBFF*Już istnieje takie konto.",source,0,0,0,true)
-        end else outputChatBox("#63DBFF*Wpisz poprawne dane.",source,0,0,0,true)
+     else 
+        outputChatBox("#63DBFF*Konto o takiej nazwie już istnieje.",source,0,0,0,true)
+        end 
+        else outputChatBox("#63DBFF*Wpisz poprawne dane.",source,0,0,0,true)
     end
 end)
