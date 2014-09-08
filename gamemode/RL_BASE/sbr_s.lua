@@ -8,6 +8,11 @@ end
 
 
 
+--[[
+
+Ile tych timerów ;--; Nie zdziwiłbym się, gdyby to przy większej ilości graczy padło.
+
+Przeniesione do RL_LOGIN/login_s.lua
 
 setTimer( function ()
 for key, value in ipairs(getElementsByType("player")) do
@@ -28,6 +33,13 @@ if isPlayerInACL(value,"Console") then
 end
 end
 end,3000,0)
+]]--
+
+
+
+
+
+
 
 
 function addToScoreboard()
