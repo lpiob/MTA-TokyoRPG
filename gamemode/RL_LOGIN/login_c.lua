@@ -18,27 +18,25 @@ addEventHandler("onClientResourceStart", resourceRoot,
     end
 )
 
-addEventHandler("onClientGUIClick",getRootElement(),function (button) if button=="left" then if
-    source == buttonzaloguj then
+addEventHandler("onClientGUIClick",getRootElement(), function () 
+    if source == buttonzaloguj then
     triggerServerEvent("onTryLogin",localPlayer,guiGetText(editlogin),guiGetText(edithaslo))
-end
 end
 end)
 
-addEventHandler("onClientGUIClick",getRootElement(),function (button) if button=="left" then if
-    source == buttonzarejestruj then
+addEventHandler("onClientGUIClick",getRootElement(), function () 
+   if source == buttonzarejestruj then
     triggerServerEvent("onTryRegister",localPlayer,guiGetText(editlogin),guiGetText(edithaslo))
-end
 end
 end)
 
 addEvent("hideGui",true)
 addEventHandler("hideGui",getRootElement(),function ()
 if source == localPlayer then
-    guiSetInputEnabled(false)
     showCursor(false)
     guiSetVisible(window,false)
-    end end)
+    end
+    end)
     
     
     
