@@ -94,8 +94,7 @@ addCommandHandler("createstation",createFuelStation)
 
 function checkStation(vehicle)
 for key, value in ipairs(stations) do
-if isElementWithinMarker(vehicle,value)
-then
+if isElementWithinMarker(vehicle,value) then
 return true
 end
 end
@@ -122,14 +121,23 @@ end
 end)
 
 
+addEventHandler("onVehicleRespawn", root,
+    function ( )
+        setElementData(source, "vehicle:fuel", 100)
+        end)
+
+
 onStart()
 
-setTimer(onStart,1000,0)
+--setTimer(onStart,1000,0) -- Tak, więcej tego! A potem się dziwić żę lagi są.. Po co to ciąle zapisywać?
+-- nie wystarczy raz po starcie zasobu + po spawnie?
     
-addEventHandler("onPlayerMarkerHit",getRootElement(),function (marker,dim)
-if dim then
-if checkStation(getPedOccupiedVehicle(source)) then
+addEventHandler("onMarkerHit",getRootElement(),function (plr,dim)
+    if getElementType(plr) == "player" then
+if checkStation(getPedOccupiedVehicle(plr)) then
 outputChatBox("#63DBFF*Jeżeli chcesz zatankować wpisz #B9F46C/zatankuj#63DBFF.",source,0,0,0,true)
-end end end)
+end
+end
+end)
 
     
