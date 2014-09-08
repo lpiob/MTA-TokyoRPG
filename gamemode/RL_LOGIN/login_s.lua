@@ -1,52 +1,40 @@
-addEventHandler("onPlayerJoin",getRootElement(),function () setElementPosition(source,spawnPlayer(source,-2100.265625,1881.0595703125,82.2734375))
-end)
 
+        window = guiCreateWindow(0.32, 0.21, 0.40, 0.50, "Panel Logowania", true)
+        guiWindowSetSizable(window, false)
+        editlogin = guiCreateEdit(0.21, 0.27, 0.60, 0.08, "", true, window)
+        label1 = guiCreateLabel(0.29, 0.19, 0.42, 0.08, "Nazwa Użytkownika", true, window)
+        guiLabelSetHorizontalAlign(label1, "center", false)
+        guiLabelSetVerticalAlign(label1, "center")
+        label2 = guiCreateLabel(0.29, 0.46, 0.42, 0.08, "Hasło", true, window)
+        guiLabelSetHorizontalAlign(label2, "center", false)
+        guiLabelSetVerticalAlign(label2, "center")
+        edithaslo = guiCreateEdit(0.21, 0.54, 0.60, 0.08, "", true, window)
+        guiEditSetMasked(edithaslo, true)
+        buttonzarejestruj = guiCreateButton(0.54, 0.76, 0.30, 0.14, "Zarejestruj", true, window)
+        buttonzaloguj = guiCreateButton(0.18, 0.76, 0.30, 0.14, "Zaloguj", true, window)   
+        showCursor(true)
 
-
-addEvent("onTryLogin",true)
-addEventHandler("onTryLogin",getRootElement(),function (login,haslo)
-   if logIn(source, getPlayerAccount(source), haslo) then
-          outputChatBox("#63DBFF*Zostałeś pomyślnie zalogowany.",source,0,0,0,true)
-        triggerClientEvent("hideGui",source)
-        --spawnPlayer(source,0,0,3)
-        setCameraTarget(source, source)
-        
-        if isPlayerInACL(source,"Console") then
-    setElementData(source,"Rank","RCON")
-    elseif
-    isPlayerInACL(source,"Admin") then
-    setElementData(source,"Rank","ADMIN")
-    elseif
-    isPlayerInACL(source,"SuperModerator") then
-    setElementData(source,"Rank","SMOD")
-    elseif
-    isPlayerInACL(source,"Moderator") then
-    setElementData(source,"Rank","MOD")
-    else if not isPlayerInACL(source,"Console" or "Admin" or "SuperModerator" or "Moderator") then
-    setElementData(source,"Rank","Gracz")
-    end
+		
+addEventHandler("onClientGUIClick",getRootElement(), function () 
+    if source == buttonzaloguj then
+    triggerServerEvent("onTryLogin",localPlayer,guiGetText(editlogin),guiGetText(edithaslo))
+	
 end
+end)
+
+addEventHandler("onClientGUIClick",getRootElement(), function () 
+   if source == buttonzarejestruj then
+    triggerServerEvent("onTryRegister",localPlayer,guiGetText(editlogin),guiGetText(edithaslo))
 end
-        
-    else 
-        outputChatBox("#63DBFF*Podałeś złe hasło.",source,0,0,0,true)
- end
 end)
 
-
-addEvent("onTryRegister",true)
-addEventHandler("onTryRegister",getRootElement(),function (login,haslo)
-    if not getAccount(login) then 
-    if addAccount(login,haslo) then
-        logIn(source,getAccount(login),haslo)
-        outputChatBox("#63DBFF*Zostałeś pomyślnie zarejestrowany i automatycznie zalogowany.",source,0,0,0,true)
-        --outputChatBox("#63DBFF*Stworzyłeś konto o nazwie: #B9F46C"..login.." #63DBFFi haśle: #B9F46C"..haslo.."#63DBFF.",source,0,0,0,true)
-        triggerClientEvent("hideGui",source)
-     --   spawnPlayer(source,0,0,3)
-        setCameraTarget(source)
-     else 
-        outputChatBox("#63DBFF*Konto o takiej nazwie już istnieje.",source,0,0,0,true)
-        end 
-        else outputChatBox("#63DBFF*Wpisz poprawne dane.",source,0,0,0,true)
+addEvent("hideGui",true)
+addEventHandler("hideGui",getRootElement(),function ()
+if source == localPlayer then
+    showCursor(false)
+    guiSetVisible(window,false)
     end
-end)
+    end)
+    
+    
+    
