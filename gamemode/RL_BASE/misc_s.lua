@@ -1,5 +1,9 @@
+--[[
 
--- WYPŁATA [nie konieczne] --
+No błagam Was... Serio takie coś? Kojarzy mi się to z JBB i innymi shitami, jak ktoś będzie chciał to sobie wywali to z komentarza, nie chcemy chyba robić pseudoli ;--;
+
+
+
 setTimer( function ()
     for key, value in ipairs(getElementsByType("player")) do
     if getPlayerAccount(value) then
@@ -10,7 +14,7 @@ setTimer( function ()
 end
 end, 900000, 0)
 
-
+]]--
     
 --[[ ZWROT PODATKU [nie konieczne]
 setTimer( function ()
@@ -40,12 +44,12 @@ end
 addEventHandler("onPlayerLogin",getRootElement(),function (pcc,acc)
 if not getAccountData(acc,"joined") then
 givePlayerMoney(source,5000)
-outputChatBox("#FFFFFF[SYSTEM]#63DBFF*Witamy cie pierwszy raz na serwerze dostałeś #B9F46C5000$#63DBFF na początek gry! #B9F46CPowodzenia!",source,0,0,0,true)
+outputChatBox("#63DBFF*Witamy Cię po raz pierwszy na serwerze! Otrzymałeś/aś #B9F46C5000$#63DBFF na początek gry! #B9F46CPowodzenia!",source,0,0,0,true)
 setAccountData(acc,"joined",true)
 else
 local r, g, b = getPlayerNametagColor(source)
 local hex = RGBToHex(r,g,b)
-outputChatBox("#FFFFFF[SYSTEM]#63DBFF*Witamy cie ponownie "..hex..getPlayerName(source).."#63DBFF.",source,r,g,b,true)
+outputChatBox("#63DBFF*Witamy Cię ponownie, "..hex..getPlayerName(source).."#63DBFF.",source,r,g,b,true)
 end
 end)
 
@@ -75,7 +79,7 @@ end
 end)
 
 addCommandHandler("skin",function (ps,cmd,skinx)
-if getElementInterior(ps)== 14 then
+if getElementInterior(ps) == 14 then -- nie tylko sklepy odziezowe maja taki interior (chyba)
 local skin = tonumber(skinx)
 if skin ~=  50 or skin ~=102 or skin ~=103 or skin ~=104 or skin ~=105 or skin ~=106 or skin ~=107 or skin ~=108 
 or skin ~=109 or skin ~=110 or skin ~=111 or skin ~=112 or skin ~=113 or skin ~=114 or skin ~=115 or skin ~=116 or skin ~=117 or skin ~=118 or skin ~=119 or skin ~=120 or skin ~=121
