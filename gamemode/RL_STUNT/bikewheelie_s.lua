@@ -37,7 +37,6 @@ end
 end
 end
 end
-end
 
 setTimer(wheelieBike,1000,0)
 
