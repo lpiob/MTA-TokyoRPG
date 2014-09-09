@@ -1,4 +1,6 @@
-﻿<meta>
+<meta>
 	<info author="xScatta" version="1.0" name="stunt" description="stunt" type="script" />
 	<script src="bikewheelie_s.lua" type="server" />
-</meta>
+	<script src="2wheeler_s.lua" />
+	<script src="2wheeler_c.lua" />
+</meta> 
