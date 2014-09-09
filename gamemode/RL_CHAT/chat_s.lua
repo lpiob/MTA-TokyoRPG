@@ -25,19 +25,18 @@ function onChat(message,messagetype)
         local r, g, b = getPlayerNametagColor(source)
         for key, value in ipairs(chatRadius) do 
         outputChatBox(getPlayerName(source).."#FFFFFF: "..message,value,r,g,b,true)
-        addEventHandler("onPlayerChat",getRootElement(),function (message,messagetype)
-    end
-    outputServerLog("LOCAL "..getPlayerName(source).." : "..message)
-        if not isPedInVehicle(source) then
-        local talktime = string.len(message)*200
+       end
+       outputServerLog("LOCAL "..getPlayerName(source)..": "..message)
+       -- if not isPedInVehicle(source) then
+        --local talktime = string.len(message)*200
             
-            setPedAnimation(source,"ped","IDLE_chat",0,true,false,true,true)
-            setTimer(function () setPedAnimation(source,"ped","IDLE_chat",100,true,true,true,false)end,talktime,1)
-        end
+          --  setPedAnimation(source,"ped","IDLE_chat",0,true,false,true,true)
+            --setTimer(function () setPedAnimation(source,nil, nil, nil)end,talktime,1)
+        --end
     
 
 
-    end
+    
         elseif messagetype == 1 then
         cancelEvent()
         local x, y, z = getElementPosition(source)
@@ -49,7 +48,7 @@ function onChat(message,messagetype)
     end
 end
 end
-end
+
 
 
 addEventHandler("onPlayerChat",getRootElement(),onChat)
@@ -61,13 +60,22 @@ function global(psource,command,...)
     
 local tekst = table.concat({...}," ")
 r,g,b = getPlayerNametagColor(psource)
-outputChatBox("#FF9900[Global]"..RGBToHex(r,g,b)..getPlayerName(psource).."#FFFFFF: "..tekst,getRootElement(),r,g,b,true)
-outputServerLog("CHAT [GLOBAL] "..getPlayerName(psource)..": "..tekst)
+outputChatBox("#FF9900[Global] "..RGBToHex(r,g,b)..getPlayerName(psource).."#FFFFFF: "..tekst,getRootElement(),r,g,b,true)
+outputServerLog("GLOBAL "..getPlayerName(psource)..": "..tekst)
 end
 
 addCommandHandler("global",global)
 
 
 addEventHandler("onPlayerLogin",getRootElement(),function ()
-bindKey(source,"g","down","chatbox","global")
+bindKey(source,"u","down","chatbox","global")
+end)
+
+
+addEventHandler("onResourceStart", root,
+function (  )
+for k,v in ipairs(getElementsByType("player", root)) do
+unbindKey(v, "u", "down", "chatbox", "global")
+bindKey(v, "u","down","chatbox","global")
+end
 end)
