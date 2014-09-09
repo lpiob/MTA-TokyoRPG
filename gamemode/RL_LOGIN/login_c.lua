@@ -1,5 +1,4 @@
-addEventHandler("onClientResourceStart", resourceRoot,
-    function()
+
         window = guiCreateWindow(0.32, 0.21, 0.40, 0.50, "Panel Logowania", true)
         guiWindowSetSizable(window, false)
         editlogin = guiCreateEdit(0.21, 0.27, 0.60, 0.08, "", true, window)
@@ -14,13 +13,12 @@ addEventHandler("onClientResourceStart", resourceRoot,
         buttonzarejestruj = guiCreateButton(0.54, 0.76, 0.30, 0.14, "Zarejestruj", true, window)
         buttonzaloguj = guiCreateButton(0.18, 0.76, 0.30, 0.14, "Zaloguj", true, window)   
         showCursor(true)
-        guiSetInputEnabled(true)
-    end
-)
 
+		
 addEventHandler("onClientGUIClick",getRootElement(), function () 
     if source == buttonzaloguj then
     triggerServerEvent("onTryLogin",localPlayer,guiGetText(editlogin),guiGetText(edithaslo))
+	
 end
 end)
 
