@@ -5,8 +5,9 @@ end)
 
 addEvent("onTryLogin",true)
 addEventHandler("onTryLogin",getRootElement(),function (login,haslo)
-   if logIn(source, getPlayerAccount(source), haslo) then
+   if logIn(source, getAccount(login,haslo), haslo) then
           outputChatBox("#63DBFF*Zostałeś pomyślnie zalogowany.",source,0,0,0,true)
+		  showCursor(false)
         triggerClientEvent("hideGui",source)
         --spawnPlayer(source,0,0,3)
         setCameraTarget(source, source)
@@ -22,15 +23,16 @@ addEventHandler("onTryLogin",getRootElement(),function (login,haslo)
     elseif
     isPlayerInACL(source,"Moderator") then
     setElementData(source,"Rank","MOD")
-    else if not isPlayerInACL(source,"Console" or "Admin" or "SuperModerator" or "Moderator") then
+    elseif not isPlayerInACL(source,"Console" or "Admin" or "SuperModerator" or "Moderator") then
     setElementData(source,"Rank","Gracz")
     end
-end
-end
+
+
         
     else 
         outputChatBox("#63DBFF*Podałeś złe hasło.",source,0,0,0,true)
- end
+		end
+
 end)
 
 
@@ -46,7 +48,9 @@ addEventHandler("onTryRegister",getRootElement(),function (login,haslo)
         setCameraTarget(source)
      else 
         outputChatBox("#63DBFF*Konto o takiej nazwie już istnieje.",source,0,0,0,true)
-        end 
-        else outputChatBox("#63DBFF*Wpisz poprawne dane.",source,0,0,0,true)
-    end
+        end
+        else 
+		outputChatBox("#63DBFF*Wpisz poprawne dane.",source,0,0,0,true)
+		end
+    
 end)
