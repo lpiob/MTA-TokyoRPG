@@ -27,6 +27,7 @@ function onChat(message,messagetype)
         outputChatBox(getPlayerName(source).."#FFFFFF: "..message,value,r,g,b,true)
         addEventHandler("onPlayerChat",getRootElement(),function (message,messagetype)
     end
+    outputServerLog("LOCAL "..getPlayerName(source).." : "..message)
         if not isPedInVehicle(source) then
         local talktime = string.len(message)*200
             
@@ -44,6 +45,7 @@ function onChat(message,messagetype)
         local chatRadius = getElementsWithinColShape(chatCol)
         for key, value in ipairs(chatRadius) do 
         outputChatBox("#FF5555*"..getPlayerName(source).." "..message,value,0,0,0,true)
+        outputServerLog("ME *"..getPlayerName(source).." "..message)
     end
 end
 end
@@ -59,12 +61,13 @@ function global(psource,command,...)
     
 local tekst = table.concat({...}," ")
 r,g,b = getPlayerNametagColor(psource)
-outputChatBox("#FFFFFF[Global]"..RGBToHex(r,g,b)..getPlayerName(psource).."#FFFFFF: "..tekst,getRootElement(),r,g,b,true)
+outputChatBox("#FF9900[Global]"..RGBToHex(r,g,b)..getPlayerName(psource).."#FFFFFF: "..tekst,getRootElement(),r,g,b,true)
+outputServerLog("CHAT [GLOBAL] "..getPlayerName(psource)..": "..tekst)
 end
 
 addCommandHandler("global",global)
 
 
 addEventHandler("onPlayerLogin",getRootElement(),function ()
-bindKey(source,"u","down","chatbox","global")
+bindKey(source,"g","down","chatbox","global")
 end)
