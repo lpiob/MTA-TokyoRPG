@@ -12,8 +12,12 @@ function give(playerSource,pcar,car,cost,km)
     if isPlayerInACL(playerSource,"Admin") then 
    
     if ( car ) then 
+        
+    if not tonumber(car) then
+    
         car = string.lower(car)
            car = getVehicleModelFromName(car)
+           end -- w innym przypadku zmienna car nadal będzie przechowywała ID pojazdu, więc nic nie robimy w przypadku gd y podano ID.
                 x, y, z = getElementPosition(playerSource)
         local theCar = createVehicle(car,x,y,z+0.15)
         setElementPosition(playerSource,x,y,z+1.5)
